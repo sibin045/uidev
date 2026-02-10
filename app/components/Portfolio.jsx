@@ -13,28 +13,38 @@ const works = [
 
 export default function Portfolio() {
   return (
-    <section className=" min-h-screen  py-20 px-6 bg-[radial-gradient(circle_at_center,_rgba(192,132,252,0.45)_0%,_rgba(168,85,247,0.25)_25%,_rgba(17,24,39,0.95)_70%)]">
-      <div className="max-w-6xl mx-auto bg-[radial-gradient(circle_at_center,_rgba(192,132,252,0.45)_0%,_rgba(168,85,247,0.25)_25%,_rgba(17,24,39,0.95)_70%)] h-96 rounded-lg mb-12" >
-        <h2 className="text-3xl font-bold mb-3 text-red-500">Our Work</h2>
-        <p className="text-gray-500 mb-10 max-w-xl font-medium transition-colors hover:text-gray-300">
+    <section className="min-h-screen bg-[radial-gradient(circle_at_center,_rgba(192,132,252,0.45)_0%,_rgba(168,85,247,0.25)_25%,_rgba(17,24,39,0.95)_70%)] py-12 sm:py-20 px-4 sm:px-6">
+      
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Heading */}
+        <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-red-500">
+          Our Work
+        </h2>
+
+        <p className="text-gray-400 mb-8 max-w-xl font-medium hover:text-gray-300 transition-colors">
           Featured projects showcasing cinematic storytelling and visual excellence.
         </p>
 
+        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {works.map((work) => (
             <div
               key={work.id}
-              className="group relative overflow-hidden rounded-xl shadow-lg"
+              className="group relative overflow-hidden rounded-xl shadow-lg bg-black"
             >
-              <Image
-                src={work.src}
-                alt={work.title}
-                width={500}
-                height={400}
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
+              {/* Aspect ratio wrapper */}
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src={work.src}
+                  alt={work.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
 
+              {/* Overlay */}
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
                 <h3 className="text-white text-lg font-semibold p-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   {work.title}
@@ -43,6 +53,7 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
